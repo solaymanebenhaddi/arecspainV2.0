@@ -1,62 +1,103 @@
 import "./featuredProperties.css";
+import useFetch from "../hooks/useFetch";
+import img1 from "../../img/property-1.jpg";
+import PropertyItem from "../propertyItem/PropertyItem";
 
 const FeaturedProperties = () => {
+  const { data, loading, error } = useFetch("/api/propertys");
   return (
-    <div className="fp">
-      <div className="fpItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/hotel/square600/13125860.webp?k=e148feeb802ac3d28d1391dad9e4cf1e12d9231f897d0b53ca067bde8a9d3355&o=&s=1"
-          alt=""
-          className="fpImg"
-        />
-        <span className="fpName">Aparthotel Stare Miasto</span>
-        <span className="fpCity">Madrid</span>
-        <span className="fpPrice">Starting from $120</span>
-        <div className="fpRating">
-          <button>8.9</button>
-          <span>Excellent</span>
+    // <div className="fp">
+    //   {loading ? "its Loading ...":<>
+    //   {data.map(item=>(
+    //   <div className="fpItem" key={item._id}>
+    //     <img
+    //       src={item.photos[0]}
+    //       alt=""
+    //       className="fpImg"
+    //       />
+    //     <span className="fpName">{item.name}</span>
+    //     <span className="fpCity">{item.city}</span>
+    //     <span className="fpPrice">Starting from ${item.cheapestPrice}</span>
+    //     {item.rating &&<div className="fpRating">
+    //       <button>{item.rating}</button>
+    //       <span>Excellent</span>
+    //     </div>}
+    //   </div>
+    //   ))}
+    // </>}
+    // </div>
+    <div className="container-xxl py-5">
+      <div className="container">
+        <div className="row g-0 gx-5 align-items-end">
+          <div className="col-lg-6">
+            <div
+              className="text-start mx-auto mb-5 wow slideInLeft"
+              data-wow-delay="0.1s"
+            >
+              <h1 className="mb-3">Property Listing</h1>
+              <p>
+                Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
+                dolore lorem kasd vero ipsum sit eirmod sit diam justo sed
+                rebum.
+              </p>
+            </div>
+          </div>
+          <div
+            className="col-lg-6 text-start text-lg-end wow slideInRight"
+            data-wow-delay="0.1s"
+          >
+            <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
+              <li className="nav-item me-2">
+                <a
+                  className="btn btn-outline-primary active"
+                  data-bs-toggle="pill"
+                  href="#tab-1"
+                >
+                  Featured
+                </a>
+              </li>
+              <li className="nav-item me-2">
+                <a
+                  className="btn btn-outline-primary"
+                  data-bs-toggle="pill"
+                  href="#tab-2"
+                >
+                  For Sell
+                </a>
+              </li>
+              <li className="nav-item me-0">
+                <a
+                  className="btn btn-outline-primary"
+                  data-bs-toggle="pill"
+                  href="#tab-3"
+                >
+                  For Rent
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="fpItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/215955381.jpg?k=ff739d1d9e0c8e233f78ee3ced82743ef0355e925df8db7135d83b55a00ca07a&o=&hp=1"
-          alt=""
-          className="fpImg"
-        />
-        <span className="fpName">Comfort Suites Airport</span>
-        <span className="fpCity">Austin</span>
-        <span className="fpPrice">Starting from $140</span>
-        <div className="fpRating">
-          <button>9.3</button>
-          <span>Exceptional</span>
-        </div>
-      </div>
-      <div className="fpItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/232902339.jpg?k=3947def526b8af0429568b44f9716e79667d640842c48de5e66fd2a8b776accd&o=&hp=1"
-          alt=""
-          className="fpImg"
-        />
-        <span className="fpName">Four Seasons Hotel</span>
-        <span className="fpCity">Lisbon</span>
-        <span className="fpPrice">Starting from $99</span>
-        <div className="fpRating">
-          <button>8.8</button>
-          <span>Excellent</span>
-        </div>
-      </div>
-      <div className="fpItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/322658536.jpg?k=3fffe63a365fd0ccdc59210188e55188cdb7448b9ec1ddb71b0843172138ec07&o=&hp=1"
-          alt=""
-          className="fpImg"
-        />
-        <span className="fpName">Hilton Garden Inn</span>
-        <span className="fpCity">Berlin</span>
-        <span className="fpPrice">Starting from $105</span>
-        <div className="fpRating">
-          <button>8.9</button>
-          <span>Excellent</span>
+        <div className="tab-content">
+          <div id="tab-1" className="tab-pane fade show p-0 active">
+            <div className="row g-4">
+              
+                {loading ? (
+                  "its Loading ..."
+                ) : (
+                  <>
+                    {data.map((item) => (
+                      <PropertyItem item={item} key={item._id} />
+                    ))}
+                  </>
+                )}
+              
+            </div>
+            <div className="col-12 text-center">
+              <a className="btn btn-primary py-3 px-5" href="/#">
+                Browse More Property
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

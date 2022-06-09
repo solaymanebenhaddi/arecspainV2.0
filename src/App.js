@@ -4,16 +4,18 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Hotel from "./pages/hotel/Hotel";
+import Property from "./pages/property/Property";
 import List from "./pages/list/List";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/hotels" element={<List/>}/>
-        <Route path="/hotels/:id" element={<Hotel/>}/>
+        <Route path="/List" element={<List/>}/>
+        <Route path="/property/:id" element={<Property/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
