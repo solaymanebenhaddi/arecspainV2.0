@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && echo '/api/* https://arecspain.herokuapp.com/api/v1/:splat 200' | cat >build/_redirects",
+    "build": "react-scripts build && echo '/api/* https://arecspain.herokuapp.com/api 200' | cat >build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
