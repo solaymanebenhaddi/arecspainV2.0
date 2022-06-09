@@ -4,7 +4,7 @@ import img1 from "../../img/property-1.jpg";
 import PropertyItem from "../propertyItem/PropertyItem";
 
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("https://arecspain.herokuapp.com/api/propertys");
+  const { data, loading, error } = useFetch("/api/propertys");
   return (
     // <div className="fp">
     //   {loading ? "its Loading ...":<>
