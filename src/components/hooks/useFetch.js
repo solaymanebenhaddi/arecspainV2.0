@@ -13,8 +13,7 @@ const useFetch = (url)=>{
             const res = await axios.get((url,{
                 headers: {
                     'Host': 'https://arecspain.herokuapp.com/',
-                    'Accept': 'application/json'
-                }
+                               }
             }));
             setData(res.data)
         } catch (error) {
