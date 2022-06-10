@@ -12,7 +12,6 @@ const useFetch = (url)=>{
         try {
             const res = await axios.get((url,{
                 headers: {
-                    'Content-Type': 'application/json; charset=UTF-8',
                     'Host': 'https://arecspain.herokuapp.com/',
                     'Accept': 'application/json'
                 }
