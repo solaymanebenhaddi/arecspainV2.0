@@ -36,7 +36,8 @@ const useFetch = (url)=>{
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Host': 'https://arecspain.herokuapp.com/',
                 'Accept': 'application/json',
-                'mode': 'cors'
+                'mode': 'cors',
+                "Access-Control-Allow-Origin": "*",
             }
         });
          setData(res.data)
