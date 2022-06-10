@@ -10,7 +10,14 @@ const useFetch = (url)=>{
         const fetchData= async()=>{
            setLoading(true)
         try {
-            const res = await axios.get(url);
+            const res = await axios.get((url),{
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                    'Host': 'https://arecspain.herokuapp.com/',
+                    'Accept': 'application/json',
+                    'mode': 'cors'
+                }
+            });
             setData(res.data)
         } catch (error) {
             setError(error)
@@ -24,7 +31,14 @@ const useFetch = (url)=>{
     const reFetch= async()=>{ 
         setLoading(true)
      try {
-        const res = await axios.get(url);
+        const res = await axios.get((url),{
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Host': 'https://arecspain.herokuapp.com/',
+                'Accept': 'application/json',
+                'mode': 'cors'
+            }
+        });
          setData(res.data)
      } catch (error) {
          setError(error)
