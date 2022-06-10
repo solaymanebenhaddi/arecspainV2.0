@@ -10,11 +10,7 @@ const useFetch = (url)=>{
         const fetchData= async()=>{
            setLoading(true)
         try {
-            const res = await axios.get((url,{
-                headers: {
-                    'Host': 'https://arecspain.herokuapp.com/',
-                               }
-            }));
+            const res = await axios.get(url);
             setData(res.data)
         } catch (error) {
             setError(error)
