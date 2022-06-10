@@ -81,9 +81,9 @@ const FeaturedProperties = () => {
           <div id="tab-1" className="tab-pane fade show p-0 active">
             <div className="row g-4">
               
-                {loading ? (
+                {loading ? 
                   "its Loading ..."
-                ) : (
+                 : (
                   <>
                     {data.map((item) => (
                       <PropertyItem item={item} key={item._id} />
