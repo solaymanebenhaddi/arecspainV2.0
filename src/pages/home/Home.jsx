@@ -13,9 +13,8 @@ const Home = () => {
       <Navbar />
       <Header/>
       <div className="homeContainer">
-        <Featured/>
-        <hr></hr>
         <FeaturedProperties/>
+        <Featured/>
         <MailList/>
         <Footer/>
       </div>
