@@ -16,12 +16,14 @@ const Featured = () => {
     
     <div className="container-xxl py-5">
         <div className="container">
-            <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{width: "600px"}}>
+            <div className="row g-4">
+            <div className=" col-md-12 text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{width: "600px"}}>
                 <h1 className="mb-3">Property Types</h1>
                 <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
             </div>
+            </div>
             <div className="row g-4">
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -32,7 +34,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -43,7 +45,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.5s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -54,7 +56,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.7s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -65,7 +67,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -76,7 +78,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -87,7 +89,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.5s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
@@ -98,7 +100,7 @@ const Featured = () => {
                         </div>
                     </a>
                 </div>
-                <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div className="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.7s">
                     <a className="cat-item d-block bg-light text-center rounded p-3" href="/#">
                         <div className="rounded p-4">
                             <div className="icon mb-3">
