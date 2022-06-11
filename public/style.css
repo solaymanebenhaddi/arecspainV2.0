@@ -1,5 +1,6 @@
+
 :root {
-    --primary: linear-gradient(to right, #FFC837, #FF8008);;
+    --primary: #00B98E;
     --secondary: #FF6922;
     --light: #EFFDF5;
     --dark: #0E2E50;
@@ -12,7 +13,7 @@
     bottom: 45px;
     z-index: 99;
 }
- a{   text-decoration: none;}
+
 
 /*** Spinner ***/
 #spinner {
@@ -31,7 +32,6 @@
 
 /*** Button ***/
 .btn {
-    
     transition: .5s;
 }
 
@@ -70,11 +70,14 @@
 /*** Navbar ***/
 .nav-bar {
     position: relative;
+    
     margin-top: 45px;
     padding: 0 3rem;
     transition: .5s;
     z-index: 9999;
+    
 }
+
 
 .nav-bar.sticky-top {
     position: sticky;
@@ -84,7 +87,8 @@
 
 .navbar {
     box-shadow: 0 0 30px rgba(0, 0, 0, .08);
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% );
+    
+    
 }
 
 .navbar .dropdown-toggle::after {
@@ -101,15 +105,13 @@
     transform: rotate(-180deg);
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link {
     margin-right: 30px;
     padding: 25px 0;
     color: #FFFFFF;
     font-size: 15px;
     text-transform: uppercase;
     outline: none;
-    font-family: 'Playfair Display';
-    font-weight: 400;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -133,10 +135,10 @@
     }
 }
 
-.navbar .navbar-brand>h1 {
-   
+.navbar-light .navbar-brand {
+    height: 75px;
     font-family: 'Playfair Display' !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -171,17 +173,6 @@
     .header {
         margin-top: -120px;
     }
-}
-.hero{
-    font-family: 'Playfair Display';
-    font-weight: 700;
-}
-
-.search-bg{
-    background: #FF8008;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FFC837, #FF8008);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 .header-carousel .owl-nav {
@@ -232,7 +223,7 @@ background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, F
     justify-content: center;
     background: #FFFFFF !important;
     border-radius: 50px;
-    border: 1px solid #0E2E50 !important;
+    border: 1px dashed var(--primary) !important;
 }
 
 
@@ -256,15 +247,10 @@ background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, F
 
 
 /*** Category ***/
-.cat-item{
-    box-shadow: #DDDDDD 0px 0px 10px;
-}
 .cat-item div {
     background: #FFFFFF;
     border: 1px dashed rgba(0, 185, 142, .3);
     transition: .5s;
-    box-shadow: #DDDDDD 0px 0px 10px;
- 
 }
 
 .cat-item:hover div {
@@ -274,9 +260,6 @@ background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, F
 
 .cat-item div * {
     transition: .5s;
-}
-.rounded {
-    border-radius: 1.25rem!important;
 }
 
 .cat-item:hover div * {

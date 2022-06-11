@@ -11,12 +11,12 @@ const useFetch = (url)=>{
            setLoading(true)
         try {
             const res = await axios.get((url),{
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8',
-                    'Host': 'https://arecspain.herokuapp.com/',
-                    'Accept': 'application/json',
-                    'mode': 'cors'
-                }
+                // headers: {
+                //     'Content-Type': 'application/json; charset=UTF-8',
+                //     'Host': 'https://arecspain.herokuapp.com/',
+                //     'Accept': 'application/json',
+                //     'mode': 'cors'
+                // }
             });
             setData(res.data)
         } catch (error) {
@@ -32,13 +32,13 @@ const useFetch = (url)=>{
         setLoading(true)
      try {
         const res = await axios.get((url),{
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Host': 'https://arecspain.herokuapp.com/',
-                'Accept': 'application/json',
-                'mode': 'cors',
-                "Access-Control-Allow-Origin": "*",
-            }
+            // headers: {
+            //     'Content-Type': 'application/json; charset=UTF-8',
+            //     'Host': 'https://arecspain.herokuapp.com/',
+            //     'Accept': 'application/json',
+            //     'mode': 'cors',
+            //     "Access-Control-Allow-Origin": "*",
+            // }
         });
          setData(res.data)
      } catch (error) {

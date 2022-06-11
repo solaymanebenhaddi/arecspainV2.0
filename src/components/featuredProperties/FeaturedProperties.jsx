@@ -2,9 +2,9 @@ import "./featuredProperties.css";
 import useFetch from "../hooks/useFetch";
 import img1 from "../../img/property-1.jpg";
 import PropertyItem from "../propertyItem/PropertyItem";
-
+import Properties from "../Data/PropertysData"
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("/api/propertys");
+  //const { data, loading, error } = useFetch(Properties);
   return (
     // <div className="fp">
     //   {loading ? "its Loading ...":<>
@@ -26,24 +26,22 @@ const FeaturedProperties = () => {
     //   ))}
     // </>}
     // </div>
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5 my-5">
       <div className="container">
         <div className="row g-0 gx-5 align-items-end">
-          <div className="col-lg-6">
+          <div className="col-md-6">
             <div
               className="text-start mx-auto mb-5 wow slideInLeft"
               data-wow-delay="0.1s"
             >
               <h1 className="mb-3">Property Listing</h1>
               <p>
-                Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
-                dolore lorem kasd vero ipsum sit eirmod sit diam justo sed
-                rebum.
-              </p>
+                <strong>AREC SPAIN.</strong> is a real estate agency that provide a wide range of services to satisfy all your real estate needs.
+               </p>
             </div>
           </div>
           <div
-            className="col-lg-6 text-start text-lg-end wow slideInRight"
+            className="col-md-6 text-start text-lg-end wow slideInRight"
             data-wow-delay="0.1s"
           >
             <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
@@ -81,21 +79,25 @@ const FeaturedProperties = () => {
           <div id="tab-1" className="tab-pane fade show p-0 active">
             <div className="row g-4">
               
-                {loading ? 
-                  "its Loading ..."
-                 : (
+                {
+                // loading ? 
+                //   "its Loading ..."
+                //  : 
+                 (
                   <>
-                    {data.map((item) => (
-                      <PropertyItem item={item} key={item._id} />
+                    {Properties.map((item,index) => (
+                      <PropertyItem item={item} key={index} />
                     ))}
                   </>
                 )}
               
             </div>
-            <div className="col-12 text-center">
+            <div className="row d-flex justify-content-center align-items-center">
+            <div className="col-12 text-center py-3">
               <a className="btn btn-primary py-3 px-5" href="/#">
                 Browse More Property
               </a>
+            </div>
             </div>
           </div>
         </div>

@@ -12,12 +12,12 @@ const Navbar = () => {
 // <!-- Navbar Start -->
 <div className="container-fluid nav-bar bg-transparent">
   
-    <nav className="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+    <nav className="navbar navbar-expand-lg navbar-dark py-0 px-4">
     <Link to="/" className="navbar-brand d-flex align-items-center text-center">
-    <div className="icon p-2 me-2">
+    {/* <div className="icon p-2 me-2">
     <FontAwesomeIcon icon={faCity} className="headerIcon" />
-    </div>
-            <h1 className="m-auto text-warning navbar-brand d-flex align-items-center fs-2">AREC</h1>
+    </div> */}
+            <h1 className="m-auto navbar-brand d-flex align-items-center fs-2">AREC</h1>
         </Link>
         
             
@@ -32,26 +32,20 @@ const Navbar = () => {
                 <div className="nav-item dropdown">
                     <a href="/#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div className="dropdown-menu rounded-0 m-0">
-                        <a href="property-list.html" className="dropdown-item">Property List</a>
-                        <a href="property-type.html" className="dropdown-item">Property Type</a>
-                        <a href="property-agent.html" className="dropdown-item">Property Agent</a>
-                    </div>
-                </div>
-                <div className="nav-item dropdown">
-                    <a href="/#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div className="dropdown-menu rounded-0 m-0">
-                        <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                        <a href="404.html" className="dropdown-item">404 Error</a>
+                        <a href="/#" className="dropdown-item">Villas</a>
+                        <a href="/#" className="dropdown-item">Appartement</a>
+                        <a href="/#" className="dropdown-item">Luxury Container</a>
+                        <a href="/#" className="dropdown-item">Lands</a>
                     </div>
                 </div>
                 <a href="contact.html" className="nav-item nav-link">Contact</a>
             </div>
-            {user ? user.username : (
-          <div classNameName="navItems">
+            {/* {user ? user.username : (
+          <div className="navItems">
             <button className="btn btn-primary px-3 d-none d-lg-flex">Register</button>
             <button className="btn btn-primary px-3 d-none d-lg-flex">Login</button>
           </div>
-        )}
+        )} */}
         </div>
     </nav>
 </div>
