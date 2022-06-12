@@ -10,56 +10,48 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import {  useLocation, useNavigate } from "react-router-dom";
 import  useFetch from "../../components/hooks/useFetch"
 import { SearchContext } from "../../components/contextapi/SearchContext";
 import { Reserve } from "../../components/Reseve/Reserve";
 import { AuthContext } from "../../components/contextapi/AuthContext";
-const Hotel = () => {
+const Property = () => {
   const location =useLocation();
-  const id =location.pathname.split("/")[2];
-  const{data,loading,error}=useFetch(`/hotels/find/${id}`)
+  const id =location.state.ID;
+  const{data,loading,error}=useFetch(`./Data/PropertysData.json`)
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [Modal, setModal] = useState(false);
-
+  const [Data, setData] = useState([]);
   const {options,date}= useContext(SearchContext);
   const {user}= useContext(AuthContext);
 
   const navigate=useNavigate();
 
-  const MILLISECONDE_PER_DAY=1000*60*60*24;
-  const DayDifference=(date1,date2)=>{
-      const timeDiff=Math.abs(date2.getTime()-date1.getTime());
-      const diffDays=Math.ceil(timeDiff/MILLISECONDE_PER_DAY);
-      console.log(`time diff ${timeDiff}`)
-      return diffDays
+  const handleSearch =  () => {
+    const newItem =  data.filter(prop => prop.id === id);
+    setData(newItem.map(item=>item));
+    console.table(Data);
+    console.log(Data[0].type)
   }
+ 
+   useEffect(() => {
+     handleSearch();
+   }, [Data[0]]);
 
-const days= DayDifference(date[0].endDate,date[0].startDate)
-  const handleOpen = (i) => {
+
+const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
   };
-
-const handleClickReserve=()=>{
-  console.log(user)
-  if(user){
-    setModal(true)
-
-  }else{
-    navigate("/login")
-  }
-}
-
-  const handleMove = (direction) => {
+const handleMove = (direction) => {
     let newSlideNumber;
 
     if (direction === "l") {
-      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+      newSlideNumber = slideNumber === 0 ? Data[0].photos.length : slideNumber - 1;
     } else {
-      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+      newSlideNumber = slideNumber === Data[0].photos.length ? 0 : slideNumber + 1;
     }
 
     setSlideNumber(newSlideNumber)
@@ -83,7 +75,7 @@ const handleClickReserve=()=>{
               onClick={() => handleMove("l")}
             />
             <div className="sliderWrapper">
-              <img src={data.photos[slideNumber]} alt="" className="sliderImg" />
+              <img src={Data[0].photos[slideNumber]} alt="" className="sliderImg" />
             </div>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
@@ -95,19 +87,19 @@ const handleClickReserve=()=>{
         {loading ?"it's loading ...":
         <div className="hotelWrapper">
           <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">{data.name}</h1>
+          <h1 className="hotelTitle">{Data[0].type}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>{data.address}</span>
+            <span>{Data[0].address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – {data.distance}m from center
+            Excellent location – {Data[0].city} 
           </span>
           <span className="hotelPriceHighlight">
-            Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
+            Book a stay over ${Data[0].Prix} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
-            {data.photos?.map((photo, i) => (
+            {Data[0].photos?.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
                 <img
                   onClick={() => handleOpen(i)}
@@ -120,21 +112,21 @@ const handleClickReserve=()=>{
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">{data.title}</h1>
+              <h1 className="hotelTitle">{Data[0].title}</h1>
               <p className="hotelDesc">
-                {data.desc}
+                {Data[0].desc}
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a {days}-night stay!</h1>
+              <h1>Perfect for a -night stay!</h1>
               <span>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>${days*data.cheapestPrice*options.room}</b> ({days} nights)
+                <b>$xxx</b> xxx
               </h2>
-              <button  onClick={handleClickReserve}>Reserve or Book Now!</button>
+              <button >Reserve or Book Now!</button>
             </div>
           </div>
         </div>}
@@ -146,4 +138,4 @@ const handleClickReserve=()=>{
   );
 };
 
-export default Hotel;
+export default Property;

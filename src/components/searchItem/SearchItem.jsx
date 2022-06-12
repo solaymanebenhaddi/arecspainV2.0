@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./searchItem.css";
 
+
+
 const SearchItem = ({ item }) => {
+  const [ID, setID] = useState();
+    const navigate = useNavigate();
+    useEffect(() => {
+      setID(item.id);
+    }, []);
+    console.log("WTF data handle test "+item.id+" "+ID);
+  const handleSearch = () => {
+    
+    navigate("/Property", { state: { ID } });
+    
+  };
   return (
     <div className="searchItem">
       <img src={item.photos[0]} alt="" className="siImg" />
@@ -26,9 +40,9 @@ const SearchItem = ({ item }) => {
         <div className="siDetailTexts">
           <span className="siPrice">${item.price}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <Link to={`/propertys/${item._id}`}>
-          <button className="siCheckButton">See availability</button>
-          </Link>
+          
+          <button className="siCheckButton" onClick={()=>handleSearch()}>See availability</button>
+         
         </div>
       </div>
     </div>

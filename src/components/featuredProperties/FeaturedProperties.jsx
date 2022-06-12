@@ -2,9 +2,11 @@ import "./featuredProperties.css";
 import useFetch from "../hooks/useFetch";
 import img1 from "../../img/property-1.jpg";
 import PropertyItem from "../propertyItem/PropertyItem";
-import Properties from "../Data/PropertysData"
+
 const FeaturedProperties = () => {
-  //const { data, loading, error } = useFetch(Properties);
+  const { data, loading, error, reFetch } = useFetch(
+    `./Data/PropertysData.json`
+  );
   return (
     // <div className="fp">
     //   {loading ? "its Loading ...":<>
@@ -85,7 +87,7 @@ const FeaturedProperties = () => {
                 //  : 
                  (
                   <>
-                    {Properties.map((item,index) => (
+                    {data.map((item,index) => (
                       <PropertyItem item={item} key={index} />
                     ))}
                   </>

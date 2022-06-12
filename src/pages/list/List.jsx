@@ -2,11 +2,12 @@ import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState,componentDidMount } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../components/hooks/useFetch";
+import axios from "axios";
 
 const List = () => {
   const location = useLocation();
@@ -21,23 +22,39 @@ const List = () => {
   const [Maxprice, setMaxPrice] = useState(location.state.maxPrice);
   const [TypeProp, setTypeProp] = useState(location.state.TypeProp);
   const [ErrorPrice, setErrorPrice] = useState(false);
-
+  const [Data, setData] = useState([]);
   const { data, loading, error, reFetch } = useFetch(
-    `/api/propertys?city=${City}&min=${Minprice || 0}&max=${Maxprice || 999999}`
+    `./Data/PropertysData.json`
   );
+  
+ const handleSearch =  () => {
+   const newItem =  data.filter(prop => prop.type === TypeProp);
+   setData(newItem);
+   console.log("WTF data handle test "+data);
+ }
+//  componentDidMount=()=> {
+//   handleSearch();
+//  }
+  useEffect(() => {
+    handleSearch();
+  }, [data]);
+  console.log("WTF DATA "+Data);
+  //setData(filtered)
+  // if (Minprice >= Maxprice) {
+  //   setErrorPrice(true);
+  // } else 
+  // {}
 
   const handleClick = () => {
-    reFetch();
-  };
+try {
+     handleSearch();
+  } catch (error) {
+    console.log("WTF "+error);
+  }
+    
+}
 
-  const handleSearch = () => {
-    if (Minprice >= Maxprice) {
-      setErrorPrice(true);
-    } else {
-    }
-  };
-
-  return (
+return (
     <div>
       <Navbar />
       <Header type="list" />
@@ -72,7 +89,7 @@ const List = () => {
                   <option value="Appartement" className="p-3">
                     Appartement
                   </option>
-                  <option value="Luxury" className="p-3">
+                  <option value="Luxury Home Container" className="p-3">
                     Luxury Home Container
                   </option>
                   <option value="Lands" className="p-3">
@@ -143,12 +160,14 @@ const List = () => {
         </div>
         <div className="col-md-7 flex-shrink-1">
         <div className="listResult">
-            {loading ? (
-              "its Loading ..."
-            ) : (
+            {
+            // loading ? (
+            //   "its Loading ..."
+            // ) : 
+            (
               <>
-                {data.map((item) => (
-                  <SearchItem item={item} key={item._id} />
+                {!Data ? "No matching Data":Data.map((item) => (
+                  <SearchItem item={item} key={item.id} />
                 ))}
               </>
             )}

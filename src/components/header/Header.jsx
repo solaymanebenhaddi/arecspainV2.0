@@ -91,7 +91,8 @@ const Header = ({ type }) => {
           </div>
         </div>
       </div>
-
+      {type !== "list" && (
+        
       <div
         className="container-fluid search-bg mb-5 wow p-5 fadeIn"
         data-wow-delay="0.1s"      >
@@ -134,7 +135,7 @@ const Header = ({ type }) => {
                         <option value="Appartement" className="p-3">
                           Appartement
                         </option>
-                        <option value="Luxury" className="p-3">
+                        <option value="Luxury Home Container" className="p-3">
                           Luxury Home Container
                         </option>
                         <option value="Lands" className="p-3">
@@ -229,6 +230,7 @@ const Header = ({ type }) => {
           </div>
         </div>
       </div>
+    )}
     </>
     // <div className="header">
     //   <div
@@ -382,7 +384,7 @@ const Header = ({ type }) => {
     //     )}
     //   </div>
     // </div>
-  );
-};
+  
+)};
 
 export default Header;
