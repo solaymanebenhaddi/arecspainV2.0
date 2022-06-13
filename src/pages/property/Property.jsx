@@ -38,9 +38,10 @@ const Property = () => {
   }
  
    useEffect(() => {
-    setData([{}])
+    
     const newItem =  data.filter(prop => prop.id === id);
-    setData(newItem[0]);
+    setData(data.filter(prop => prop.id === id));
+    console.table(Data)
    }, [data]);
 
 
@@ -52,9 +53,9 @@ const handleMove = (direction) => {
     let newSlideNumber;
 
     if (direction === "l") {
-      newSlideNumber = slideNumber === 0 ? Data.photos.length : slideNumber - 1;
+      newSlideNumber = slideNumber === 0 ? Data[0].photos.length : slideNumber - 1;
     } else {
-      newSlideNumber = slideNumber === Data.photos.length ? 0 : slideNumber + 1;
+      newSlideNumber = slideNumber === Data[0].photos.length ? 0 : slideNumber + 1;
     }
 
     setSlideNumber(newSlideNumber)
@@ -65,6 +66,7 @@ const handleMove = (direction) => {
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
+        {Data.map((itemData)=>(<>
         {open && (
           <div className="slider">
             <FontAwesomeIcon
@@ -78,7 +80,7 @@ const handleMove = (direction) => {
               onClick={() => handleMove("l")}
             />
             <div className="sliderWrapper">
-              <img src={Data.photos[slideNumber]} alt="" className="sliderImg" />
+              <img src={itemData.photos[slideNumber]} alt="" className="sliderImg" />
             </div>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
@@ -90,19 +92,19 @@ const handleMove = (direction) => {
         {loading ?"it's loading ...":
         <div className="hotelWrapper">
           <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">{Data.type}</h1>
+          <h1 className="hotelTitle">{itemData.type}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>{Data.address}</span>
+            <span>{itemData.address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – {Data.city} 
+            Excellent location – {itemData.city} 
           </span>
           <span className="hotelPriceHighlight">
-            Book a stay over ${Data.Prix} at this property and get a free airport taxi
+            Book a stay over ${itemData.Prix} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
-            {Data.photos?.map((photo, i) => (
+            {itemData.photos?.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
                 <img
                   onClick={() => handleOpen(i)}
@@ -115,9 +117,9 @@ const handleMove = (direction) => {
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">{Data.title}</h1>
+              <h1 className="hotelTitle">{itemData.title}</h1>
               <p className="hotelDesc">
-                {Data.desc}
+                {itemData.desc}
               </p>
             </div>
             <div className="hotelDetailsPrice">
@@ -132,7 +134,7 @@ const handleMove = (direction) => {
               <button >Reserve or Book Now!</button>
             </div>
           </div>
-        </div>}
+        </div>} </>) )}
         <MailList />
         <Footer />
       {Modal && <Reserve setOpen={setModal} hotelid={id}/>}
