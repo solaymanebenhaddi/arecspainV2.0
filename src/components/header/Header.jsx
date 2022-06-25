@@ -9,14 +9,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
 import { useContext, useState } from "react";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+// import "react-date-range/dist/styles.css"; // main css file
+// import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../contextapi/SearchContext";
 import { AuthContext } from "../contextapi/AuthContext";
 
 import car2 from "../../img/carousel-2.jpg";
+import SliderHero from "../slider/Slider";
 //import car1 from "../../img/carousel-1.jpg";
 
 const Header = ({ type }) => {
@@ -29,7 +30,7 @@ const Header = ({ type }) => {
 
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  
+
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -37,26 +38,18 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
- 
-  
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-
-
-
-
   const handleSearch = () => {
-    
-    if(minPrice>=maxPrice){
+    if (minPrice >= maxPrice) {
       setErrorPrice(true);
-      console.log(City+" and "+ErrorPrice)
+      console.log(City + " and " + ErrorPrice);
+    } else {
+      navigate("/List", { state: { City, minPrice, maxPrice, TypeProp } });
     }
-    else{
-    
-    navigate("/List", { state: { City, minPrice, maxPrice, TypeProp } });}
-    console.log(City+" "+ErrorPrice)
+    console.log(City + " " + ErrorPrice);
   };
 
   const { dispatch } = useContext(SearchContext);
@@ -76,9 +69,13 @@ const Header = ({ type }) => {
               With Your Family
             </h1>
             <p className="animated fadeIn mb-4 pb-2  text-dark">
-              <strong>Andaluce Real Estate and Construction</strong><i> provide you with best deal,
-              to find your best dream house with exclusive serivices.</i>
-                          </p>
+              <strong>Andaluce Real Estate and Construction</strong>
+              <i>
+                {" "}
+                provide you with best deal, to find your best dream house with
+                exclusive serivices.
+              </i>
+            </p>
             <a
               href="/#"
               className="btn btn-primary py-3 px-5 me-3 animated fadeIn"
@@ -87,150 +84,138 @@ const Header = ({ type }) => {
             </a>
           </div>
           <div className="col-md-6 animated fadeIn">
-            <img className="img-fluid" src={car2} alt="" />
+            {/* <img className="img-fluid" src={car2} alt="" /> */}
+            <SliderHero/>
           </div>
         </div>
       </div>
       {type !== "list" && (
-        
-      <div
-        className="container-fluid search-bg mb-5 wow p-5 fadeIn"
-        data-wow-delay="0.1s"      >
-        <div className="container">
-          <div className="row g-2">
-            <div className="col-md-10">
-              <div className="row g-2">
-                <div className="col-md-4">
-                   <div className="form-control d-flex gap-3 align-items-center p-1">
-                    <FontAwesomeIcon icon={faCity} className="headerIcon" />
-                    <input
-                      type="text"
-                      placeholder="Alicante"
-                      className="form-control p-2"
-                      name="search"
-                      id="searchD"
-                      onChange={(e) => setCity(e.target.value)}
-                    />
-
-                    
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="form-control d-flex p-1 gap-3 align-items-center">
-                    <FontAwesomeIcon
-                      icon={faBuilding}
-                      className="headerIcon"
-                    />
-
-                    <div>
-                      <select
-                        className="form-select form-select-lg p-1"
-                        value={TypeProp}
-                        onChange={(e) => setTypeProp(e.target.value)}
+         <div
+         class="container-fluid bg-primary mb-5 wow fadeIn"
+         data-wow-delay="0.1s"
+         Style="padding: 35px;"
+       >
+         <div class="container">
+           <div class="row g-2">
+             <div class="col-md-10">
+               <div class="row g-2">
+                 <div class="col-md-4">
+                   <input
+                     type="text"
+                     class="form-control border-0 py-3"
+                     placeholder="Enter City ..."
+                     name="search"
+                     id="searchD"
+                     onChange={(e) => setCity(e.target.value)}
+                   />
+                 </div>
+                 <div class="col-md-4">
+                   <select
+                     class="form-select border-0 py-3"
+                     value={TypeProp}
+                     onChange={(e) => setTypeProp(e.target.value)}
+                   >
+                     <option>--Property Type--</option>
+                     <option value="Villas" className="p-3">
+                       Villas
+                     </option>
+                     <option value="Appartement" className="p-3">
+                       Appartement
+                     </option>
+                     <option value="Luxury Home Container" className="p-3">
+                       Luxury Home Container
+                     </option>
+                     <option value="Lands" className="p-3">
+                       Lands
+                     </option>
+                   </select>
+                 </div>
+                 <div class="col-md-4 position-relative">
+                 <div className="form-control d-flex gap-3 align-items-center py-3">
+                      <FontAwesomeIcon
+                        icon={faSackDollar}
+                        className="headerIcon"
+                      />
+                      <span
+                        onClick={() => setOpenOptions(!OpenOptions)}
+                        className="input-group-text border-0 w-100"
                       >
-                        <option >--Property Type--</option>
-                        <option value="Villas" className="p-3">
-                          Villas
-                        </option>
-                        <option value="Appartement" className="p-3">
-                          Appartement
-                        </option>
-                        <option value="Luxury Home Container" className="p-3">
-                          Luxury Home Container
-                        </option>
-                        <option value="Lands" className="p-3">
-                          Lands
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4 position-relative">
-                <div className="form-control d-flex gap-3 align-items-center p-2">
-                    <FontAwesomeIcon
-                      icon={faSackDollar}
-                      className="headerIcon"
-                    />
-                    <span
-                      style={{ width: "200px" }}
-                      onClick={() => setOpenOptions(!OpenOptions)}
-                      className="input-group-text p-1 border-0"
-                    >
-                      {`Price Range : ${minPrice} -  ${maxPrice}`}
-                    </span>
-                    
-                    
-                  </div>
-                  {console.log(OpenOptions)}
-                    {OpenOptions && 
-                      <div className="options bg-secondary rounded p-3 mt-2 shadow-sm">
-                        <div className="input-group input-group-sm my-3">
-                          <div className="input-group-prepend">
-                            <span
-                              className="input-group-text"
-                              id="inputGroup-sizing-sm"
-                            >
-                              Min Price :
-                            </span>
+                        {`Price : ${minPrice} -  ${maxPrice}`}
+                      </span>
+                      {OpenOptions && (
+                        <div className="options bg-secondary rounded p-3 mt-2 shadow-sm">
+                          <div className="input-group input-group-sm my-3">
+                            <div className="input-group-prepend">
+                              <span
+                                className="input-group-text"
+                                id="inputGroup-sizing-sm"
+                              >
+                                Min Price :
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              className="form-control"
+                              onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
+                              aria-label="min"
+                              onChange={(event) => {
+                                setMinPrice(event.target.value);
+                                setErrorPrice(false);
+                              }}
+                              aria-describedby="inputGroup-sizing-sm"
+                            />
                           </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            onKeyPress={(event) => {
-                              if (!/[0-9]/.test(event.key)) {
-                                event.preventDefault();
-                              }
-                            }}
-                            aria-label="min"
-                            onChange={(event) =>
-                              {
-                                setMinPrice(event.target.value);setErrorPrice(false);}
-                            }
-                            aria-describedby="inputGroup-sizing-sm"
-                          />
-                        </div>
-                        <div className="input-group input-group-sm my-3">
-                          <div className="input-group-prepend">
-                            <span
-                              className="input-group-text"
-                              id="inputGroup-sizing-sm"
-                            >
-                              Max Price :
-                            </span>
+                          <div className="input-group input-group-sm my-3">
+                            <div className="input-group-prepend">
+                              <span
+                                className="input-group-text"
+                                id="inputGroup-sizing-sm"
+                              >
+                                Max Price :
+                              </span>
+                            </div>
+                            <input
+                              type="text"
+                              onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
+                              className="form-control"
+                              aria-label="max"
+                              onChange={(event) => {
+                                setMaxPrice(event.target.value);
+                                setErrorPrice(false);
+                              }}
+                              aria-describedby="inputGroup-sizing-sm"
+                            />
                           </div>
-                          <input
-                            type="text"
-                            onKeyPress={(event) => {
-                              if (!/[0-9]/.test(event.key)) {
-                                event.preventDefault();
-                              }
-                            }}
-                            className="form-control"
-                            aria-label="max"
-                            onChange={(event) =>{
-                              setMaxPrice(event.target.value);setErrorPrice(false);}
-                            }
-                            aria-describedby="inputGroup-sizing-sm"
-                          />
-                        </div>
-                        {ErrorPrice && <div className="alert alert-danger" role="alert">
-                                          You should Enter a Correct Range Min and Max Price!
-                                        </div>}
+                          {ErrorPrice && (
+                            <div className="alert alert-danger" role="alert">
+                              You should Enter a Correct Range Min and Max
+                              Price!
+                            </div>
+                          )}
 
-                        {/* <MultiRange min={10000} max={100000} onChange={({ min, max }) => handlePrice(min,max)}/> */}
-                      </div>
-                    }
-                  
-                </div>
-              </div>
-            </div>
-            <div className="col-md-2">
-              <button className="btn btn-dark border-0 w-100 py-3" onClick={handleSearch}>Search</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    )}
+                          {/* <MultiRange min={10000} max={100000} onChange={({ min, max }) => handlePrice(min,max)}/> */}
+                        </div>
+                      )}
+                    </div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-md-2">
+               <button class="btn btn-dark border-0 w-100 py-3" onClick={handleSearch}>Search</button>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+      )}
     </>
     // <div className="header">
     //   <div
@@ -384,7 +369,7 @@ const Header = ({ type }) => {
     //     )}
     //   </div>
     // </div>
-  
-)};
+  );
+};
 
 export default Header;
