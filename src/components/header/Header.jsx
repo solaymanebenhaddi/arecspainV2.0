@@ -131,17 +131,16 @@ const Header = ({ type }) => {
                    </select>
                  </div>
                  <div class="col-md-4 position-relative">
-                 <div className="form-control d-flex gap-3 align-items-center py-3">
-                      <FontAwesomeIcon
-                        icon={faSackDollar}
-                        className="headerIcon"
-                      />
-                      <span
-                        onClick={() => setOpenOptions(!OpenOptions)}
-                        className="input-group-text border-0 w-100"
-                      >
-                        {`Price : ${minPrice} -  ${maxPrice}`}
-                      </span>
+                 
+                      <input
+                     type="text"
+                     class="form-control border-0 py-3"
+                     placeholder={`Price : ${minPrice} -  ${maxPrice}`}
+                     name="price"
+                     id="price"
+                     onClick={() => setOpenOptions(!OpenOptions)}
+                   />
+                     
                       {OpenOptions && (
                         <div className="options bg-secondary rounded p-3 mt-2 shadow-sm">
                           <div className="input-group input-group-sm my-3">
@@ -204,7 +203,7 @@ const Header = ({ type }) => {
                           {/* <MultiRange min={10000} max={100000} onChange={({ min, max }) => handlePrice(min,max)}/> */}
                         </div>
                       )}
-                    </div>
+                    
                  </div>
                </div>
              </div>
